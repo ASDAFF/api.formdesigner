@@ -1,0 +1,13 @@
+{
+  "name": "api.formdesigner",
+  "version": "2.5.0",
+  "main": "",
+  "ignore": [
+    "source",
+    ".gitignore",
+    ".idea",
+    "bower.json",
+    "gulpfile.js",
+    "package.json"
+  ]
+}
