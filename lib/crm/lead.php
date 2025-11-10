@@ -17,8 +17,8 @@ class Lead
 	public $error = null;
 
 	private $ID;
-	private $arLink;  //Авторизация из базы
-	private $arAuth; //Авторизация с помощью Логина и Пароля
+	private $arLink;  //РђРІС‚РѕСЂРёР·Р°С†РёСЏ РёР· Р±Р°Р·С‹
+	private $arAuth; //РђРІС‚РѕСЂРёР·Р°С†РёСЏ СЃ РїРѕРјРѕС‰СЊСЋ Р›РѕРіРёРЅР° Рё РџР°СЂРѕР»СЏ
 	private $authHash;
 
 	public function __construct($ID, $arAuth = null)

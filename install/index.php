@@ -86,7 +86,7 @@ class api_formdesigner extends CModule
 
 	function InstallEvents()
 	{
-		//Ñàéòû
+		//Ð¡Ð°Ð¹Ñ‚Ñ‹
 		$arSiteId = array();
 		$rsSite   = SiteTable::getList(array(
 			'select' => array('LID'),
@@ -96,7 +96,7 @@ class api_formdesigner extends CModule
 			$arSiteId[] = $arSite['LID'];
 
 
-		//Òèï ïî÷òîâîãî ñîáûòèÿ
+		//Ð¢Ð¸Ð¿ Ð¿Ð¾Ñ‡Ñ‚Ð¾Ð²Ð¾Ð³Ð¾ ÑÐ¾Ð±Ñ‹Ñ‚Ð¸Ñ
 		$obType       = new CEventType;
 		$arEventTypes = array(
 			array(
@@ -120,7 +120,7 @@ class api_formdesigner extends CModule
 		}
 
 
-		//Ïî÷òîâûå øàáëîíû
+		//ÐŸÐ¾Ñ‡Ñ‚Ð¾Ð²Ñ‹Ðµ ÑˆÐ°Ð±Ð»Ð¾Ð½Ñ‹
 		$obEventMess     = new CEventMessage;
 		$arEventMessages = array(
 			'admin' => array(
@@ -165,7 +165,7 @@ class api_formdesigner extends CModule
 	{
 		global $DB;
 
-		//Óäàëèò ïî÷òîâûé øàáëîí
+		//Ð£Ð´Ð°Ð»Ð¸Ñ‚ Ð¿Ð¾Ñ‡Ñ‚Ð¾Ð²Ñ‹Ð¹ ÑˆÐ°Ð±Ð»Ð¾Ð½
 		$obEventMess = new CEventMessage;
 		$rsMess      = $obEventMess->GetList($by = 'id', $order = 'asc', array(
 			'TYPE_ID' => Loc::getMessage('AFD_INSTALL_ET_EVENT_NAME'),
@@ -180,7 +180,7 @@ class api_formdesigner extends CModule
 		}
 
 
-		//Óäàëèò ïî÷òîâûé òèï
+		//Ð£Ð´Ð°Ð»Ð¸Ñ‚ Ð¿Ð¾Ñ‡Ñ‚Ð¾Ð²Ñ‹Ð¹ Ñ‚Ð¸Ð¿
 		$et = new CEventType;
 		$et->Delete(Loc::getMessage('AFD_INSTALL_ET_EVENT_NAME'));
 

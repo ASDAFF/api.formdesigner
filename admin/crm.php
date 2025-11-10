@@ -424,12 +424,12 @@ $tabControl->BeginEpilogContent();
 <?
 $tabControl->EndEpilogContent();
 
-//çàãîëîâêè çàêëàäîê
+//Ð·Ð°Ð³Ð¾Ð»Ð¾Ð²ÐºÐ¸ Ð·Ð°ÐºÐ»Ð°Ð´Ð¾Ðº
 $tabControl->Begin(array('FORM_ACTION' => $APPLICATION->GetCurPage() . "?lang=" . $lang));
 
 
 //*********************************************************
-//                   ïåðâàÿ âêëàäêà
+//                   Ð¿ÐµÑ€Ð²Ð°Ñ Ð²ÐºÐ»Ð°Ð´ÐºÐ°
 //*********************************************************
 $tabControl->BeginNextFormTab();
 
