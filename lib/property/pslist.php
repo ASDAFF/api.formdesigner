@@ -1,4 +1,4 @@
-<?
+<?php
 namespace Api\FormDesigner\Property;
 
 use Bitrix\Main\Loader;

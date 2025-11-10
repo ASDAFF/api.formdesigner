@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Bitrix vars
  *
@@ -393,7 +393,7 @@ $tabControl->BeginPrologContent();
 				}
 			});
 		}
-		<?
+        <?php
 		if (count($crmList) > 0):
 		?>
 		BX.ready(function () {
@@ -404,11 +404,11 @@ $tabControl->BeginPrologContent();
 				onsuccess: CRMRedraw
 			});
 		});
-		<?
+        <?php
 		endif;
 		?>
 	</script>
-<?
+<?php
 //echo BeginNote();
 //echo Loc::getMessage('ASM_MESSAGE_EDIT_NOTE_1');
 //echo EndNote();
@@ -421,7 +421,7 @@ $tabControl->BeginEpilogContent();
 <?=bitrix_sessid_post()?>
 	<input type="hidden" name="update" value="Y">
 	<input type="hidden" name="lang" value="<?=$lang;?>">
-<?
+<?php
 $tabControl->EndEpilogContent();
 
 //заголовки закладок
@@ -449,7 +449,7 @@ $tabControl->BeginCustomField('CRM', '');
 				</tr>
 				</thead>
 				<tbody>
-				<?
+                <?php
 				if(count($crmList) <= 0):
 					?>
 					<tr>
@@ -457,7 +457,7 @@ $tabControl->BeginCustomField('CRM', '');
 							<a href="javascript:void(0)" onclick="CRM(); return false;"><?=GetMessage('FORM_TAB_CRM_NOTE_LINK');?></a>
 						</td>
 					</tr>
-					<?
+                <?php
 				endif;
 				?>
 				</tbody>
@@ -472,7 +472,7 @@ $tabControl->BeginCustomField('CRM', '');
 
 		</td>
 	</tr>
-<?
+<?php
 $tabControl->EndCustomField('CRM');
 
 /*$tabControl->Buttons(array(

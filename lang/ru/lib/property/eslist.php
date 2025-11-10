@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['AFD_LP_ESLIST_DESCRIPTION']     = 'TS Привязка к элементам с группировкой по разделам';
 $MESS['AFD_LP_ESLIST_OPTION_NO_VALUE'] = '(не установлено)';
 $MESS['AFD_LP_ESLIST_SHOW_PICTURE']    = 'Выводить изображение из поля';

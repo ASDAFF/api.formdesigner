@@ -1,4 +1,4 @@
-<?
+<?php
 /** @var CMain $APPLICATION */
 
 use \Bitrix\Main\Application;
@@ -21,7 +21,7 @@ if($arErrors)
 else
 	echo CAdminMessage::ShowNote(GetMessage('AFD_STEP2_INSTALL_OK'));
 ?>
-<?
+<?php
 if($request->get('INSTALL_DEMO') == 'Y')
 {
 	echo BeginNote();

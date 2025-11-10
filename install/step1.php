@@ -1,4 +1,4 @@
-<?
+<?php
 /** @var CMain $APPLICATION */
 
 use \Bitrix\Main\Loader;
@@ -20,7 +20,7 @@ $arIblockType = \Bitrix\Iblock\TypeTable::getList(array(
 ))->fetchAll();
 ?>
 <hr>
-<?
+<?php
 echo BeginNote();
 echo Loc::getMessage('AFD_STEP1_INSTALL_NOTE');
 echo EndNote();
@@ -37,9 +37,9 @@ echo EndNote();
 			<?=Loc::getMessage('AFD_STEP1_ADMIN_IBLOCK_TYPE')?><br>
 			<select name="IBLOCK_TYPE" style="margin-top:5px">
 				<option value=""><?=Loc::getMessage('AFD_STEP1_OPTION_EMPTY')?></option>
-				<? foreach($arIblockType as $arType): ?>
+                <?php foreach($arIblockType as $arType): ?>
 					<option value="<?=$arType['ID']?>"><?=$arType['NAME']?></option>
-				<? endforeach; ?>
+                <?php endforeach; ?>
 			</select>
 		</p>
 		<p>

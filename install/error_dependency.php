@@ -1,4 +1,4 @@
-<?
+<?php
 /** @var CMain $APPLICATION */
 
 use \Bitrix\Main\Loader;

@@ -1,4 +1,4 @@
-<?
+<?php
 $MESS['AFD_LP_PSLIST_DESCRIPTION']      = 'TS Привязка к платежным системам';
 $MESS['AFD_LP_PSLIST_OPTION_NO_VALUE']  = '(не установлено)';
 $MESS['AFD_LP_PSLIST_OPTION_VALUE_ALL'] = '(все)';
