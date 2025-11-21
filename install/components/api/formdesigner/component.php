@@ -65,7 +65,7 @@ $oFD          = new CApiFormDesigner();
 $isUtfMode    = Application::isUtfMode();
 $documentRoot = Application::getDocumentRoot();
 
-//Идентификатор формы
+//РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„РѕСЂРјС‹
 $FORM_ID = $arParams['UNIQUE_FORM_ID'] = ($arParams['UNIQUE_FORM_ID'] ? trim($arParams['UNIQUE_FORM_ID']) : $this->GetEditAreaId($this->randString()));
 
 $arParams['HTTP_PROTOCOL'] = $request->isHttps() ? 'https://' : 'http://';
@@ -82,7 +82,7 @@ if(method_exists($oUri, 'deleteParams')) {
 }
 
 
-/** Динамические параметры нужно удалять, если в компоненте используется кэширование */
+/** Р”РёРЅР°РјРёС‡РµСЃРєРёРµ РїР°СЂР°РјРµС‚СЂС‹ РЅСѓР¶РЅРѕ СѓРґР°Р»СЏС‚СЊ, РµСЃР»Рё РІ РєРѕРјРїРѕРЅРµРЅС‚Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РєСЌС€РёСЂРѕРІР°РЅРёРµ */
 $sysFormTitle = $arParams['FORM_TITLE'] ? $arParams['~FORM_TITLE'] : '';
 $sysPageTitle = $arParams['PAGE_TITLE'] ? $arParams['PAGE_TITLE'] : $APPLICATION->GetTitle();
 $sysPageUrl   = $arParams['PAGE_URL'] ? $arParams['PAGE_URL'] : $arParams['HTTP_HOST'] . $pageUrl;
@@ -300,12 +300,12 @@ $arParams['VALIDATE_ON']  = $arParams['VALIDATE_ON'] == 'Y';
 
 
 
-/** Идентификатор кэша здесь, чтобы динамические данные его не изменяли */
+/** РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєСЌС€Р° Р·РґРµСЃСЊ, С‡С‚РѕР±С‹ РґРёРЅР°РјРёС‡РµСЃРєРёРµ РґР°РЅРЅС‹Рµ РµРіРѕ РЅРµ РёР·РјРµРЅСЏР»Рё */
 $sCacheId   = $this->getCacheID(array($FORM_ID));
 $sCachePath = $managedCache->getCompCachePath($this->__relativePath);
 
 
-/** Далее вся динамика, чтобы параметры не попадали в айди кэша */
+/** Р”Р°Р»РµРµ РІСЃСЏ РґРёРЅР°РјРёРєР°, С‡С‚РѕР±С‹ РїР°СЂР°РјРµС‚СЂС‹ РЅРµ РїРѕРїР°РґР°Р»Рё РІ Р°Р№РґРё РєСЌС€Р° */
 $arParams['FORM_TITLE']     = $sysFormTitle;
 $arParams['USE_BX_CAPTCHA'] = (($arParams['USE_BX_CAPTCHA'] == 'Y' && !$USER->IsAuthorized()));
 
@@ -372,7 +372,7 @@ $arResult['MESSAGE'] = array();
 
 
 if($arParams['POST_ON']) {
-	//Через запятую несколько мыл не пропускает
+	//Р§РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ РЅРµСЃРєРѕР»СЊРєРѕ РјС‹Р» РЅРµ РїСЂРѕРїСѓСЃРєР°РµС‚
 	//	if($arParams['EMAIL_FROM'] && !check_email($arParams['EMAIL_FROM']))
 	//		$arResult['MESSAGE']['WARNING'][] = Loc::getMessage('EMAIL_FROM_NOT_VALID');
 
@@ -451,38 +451,38 @@ if($arParams['IBLOCK_ID']) {
 		$cache->startDataCache($arParams["CACHE_TIME"], $sCacheId, $sCachePath);
 
 		/*
-		PROPERTY_TYPE - Базовые типы
-			S - Строка
-			N - Число
-			L - Список
-			F - Файл
-			E - Привязка к элементам
-			G - Привязка к разделам
+		PROPERTY_TYPE - Р‘Р°Р·РѕРІС‹Рµ С‚РёРїС‹
+			S - РЎС‚СЂРѕРєР°
+			N - Р§РёСЃР»Рѕ
+			L - РЎРїРёСЃРѕРє
+			F - Р¤Р°Р№Р»
+			E - РџСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј
+			G - РџСЂРёРІСЏР·РєР° Рє СЂР°Р·РґРµР»Р°Рј
 
-		USER_TYPE - Пользовательские типы
-			S:HTML - HTML/текст
-			S:video - Видео
-			S:Date - Дата
-			S:DateTime - Дата/Время
-			S:SASDPalette - Палитра
-			S:map_yandex - Привязка к Яндекс.Карте
-			S:map2gis - Привязка к карте 2GIS
-			S:map_google - Привязка к карте Google Maps
-			S:APIFD_PSList - Привязка к платежным системам
-			S:UserID - Привязка к пользователю
-			G:SectionAuto - Привязка к разделам с автозаполнением
-			N:SASDSection - Привязка к собственной секции
-			S:TopicID - Привязка к теме форума
-			E:SKU - Привязка к товарам (SKU)
-			S:FileMan - Привязка к файлу (на сервере)
-			E:EList - Привязка к элементам в виде списка
-			S:ElementXmlID - Привязка к элементам по XML_ID
-			E:EAutocomplete - Привязка к элементам с автозаполнением
-			E:APIFD_ESList - Привязка к элементам с группировкой по разделам
-			S:SASDCheckbox - Простой чекбокс (строка)
-			N:SASDCheckboxNum - Простой чекбокс (число)
-			S:directory - Справочник
-			N:Sequence - Счетчик
+		USER_TYPE - РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ С‚РёРїС‹
+			S:HTML - HTML/С‚РµРєСЃС‚
+			S:video - Р’РёРґРµРѕ
+			S:Date - Р”Р°С‚Р°
+			S:DateTime - Р”Р°С‚Р°/Р’СЂРµРјСЏ
+			S:SASDPalette - РџР°Р»РёС‚СЂР°
+			S:map_yandex - РџСЂРёРІСЏР·РєР° Рє РЇРЅРґРµРєСЃ.РљР°СЂС‚Рµ
+			S:map2gis - РџСЂРёРІСЏР·РєР° Рє РєР°СЂС‚Рµ 2GIS
+			S:map_google - РџСЂРёРІСЏР·РєР° Рє РєР°СЂС‚Рµ Google Maps
+			S:APIFD_PSList - РџСЂРёРІСЏР·РєР° Рє РїР»Р°С‚РµР¶РЅС‹Рј СЃРёСЃС‚РµРјР°Рј
+			S:UserID - РџСЂРёРІСЏР·РєР° Рє РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
+			G:SectionAuto - РџСЂРёРІСЏР·РєР° Рє СЂР°Р·РґРµР»Р°Рј СЃ Р°РІС‚РѕР·Р°РїРѕР»РЅРµРЅРёРµРј
+			N:SASDSection - РџСЂРёРІСЏР·РєР° Рє СЃРѕР±СЃС‚РІРµРЅРЅРѕР№ СЃРµРєС†РёРё
+			S:TopicID - РџСЂРёРІСЏР·РєР° Рє С‚РµРјРµ С„РѕСЂСѓРјР°
+			E:SKU - РџСЂРёРІСЏР·РєР° Рє С‚РѕРІР°СЂР°Рј (SKU)
+			S:FileMan - РџСЂРёРІСЏР·РєР° Рє С„Р°Р№Р»Сѓ (РЅР° СЃРµСЂРІРµСЂРµ)
+			E:EList - РџСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј РІ РІРёРґРµ СЃРїРёСЃРєР°
+			S:ElementXmlID - РџСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј РїРѕ XML_ID
+			E:EAutocomplete - РџСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј СЃ Р°РІС‚РѕР·Р°РїРѕР»РЅРµРЅРёРµРј
+			E:APIFD_ESList - РџСЂРёРІСЏР·РєР° Рє СЌР»РµРјРµРЅС‚Р°Рј СЃ РіСЂСѓРїРїРёСЂРѕРІРєРѕР№ РїРѕ СЂР°Р·РґРµР»Р°Рј
+			S:SASDCheckbox - РџСЂРѕСЃС‚РѕР№ С‡РµРєР±РѕРєСЃ (СЃС‚СЂРѕРєР°)
+			N:SASDCheckboxNum - РџСЂРѕСЃС‚РѕР№ С‡РµРєР±РѕРєСЃ (С‡РёСЃР»Рѕ)
+			S:directory - РЎРїСЂР°РІРѕС‡РЅРёРє
+			N:Sequence - РЎС‡РµС‚С‡РёРє
 		*/
 
 
@@ -625,10 +625,10 @@ if($arParams['IBLOCK_ID']) {
 				$arProp['USER_VALUE']    = array();
 				$arProp['DISPLAY_VALUE'] = $arrEnum;
 			}
-			//S:directory - Справочник (кастомный)
+			//S:directory - РЎРїСЂР°РІРѕС‡РЅРёРє (РєР°СЃС‚РѕРјРЅС‹Р№)
 			elseif($arProp["USER_TYPE"] == 'directory' && $bUseHL) {
 
-				$arProp['DISPLAY_TYPE'] = 'H'; //TODO: Флажки с названиями и картинками
+				$arProp['DISPLAY_TYPE'] = 'H'; //TODO: Р¤Р»Р°Р¶РєРё СЃ РЅР°Р·РІР°РЅРёСЏРјРё Рё РєР°СЂС‚РёРЅРєР°РјРё
 				//$arUserType = CIBlockProperty::GetUserType($arProp["USER_TYPE"]);
 
 				$tableName = $arProp['USER_TYPE_SETTINGS']['TABLE_NAME'];
@@ -789,7 +789,7 @@ else
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Загрузка файлов в сессию
+/// Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»РѕРІ РІ СЃРµСЃСЃРёСЋ
 ///////////////////////////////////////////////////////////////////////////////
 
 
@@ -803,12 +803,12 @@ if($arResult["DISPLAY_PROPERTIES"]) {
 
 		if($arProp['PROPERTY_TYPE'] == 'F') {
 
-			//Готовим файлы для записи в сессию и временную папку
+			//Р“РѕС‚РѕРІРёРј С„Р°Р№Р»С‹ РґР»СЏ Р·Р°РїРёСЃРё РІ СЃРµСЃСЃРёСЋ Рё РІСЂРµРјРµРЅРЅСѓСЋ РїР°РїРєСѓ
 			if($isAction && $action == 'FILE_UPLOAD') {
 
 				if($arFILE = $_FILES[ $arProp['CODE'] ]) {
 
-					//Создаем папку для загрузки файлов, если не создана
+					//РЎРѕР·РґР°РµРј РїР°РїРєСѓ РґР»СЏ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»РѕРІ, РµСЃР»Рё РЅРµ СЃРѕР·РґР°РЅР°
 					if(!is_dir($arParams['UPLOAD_TMP_DIR']))
 						if(!mkdir($arParams['UPLOAD_TMP_DIR'], 0755, true))
 							$arResult['MESSAGE']['WARNING'][] = Loc::getMessage('AFDC_WARNING_UPLOAD_TMP_DIR');
@@ -889,7 +889,7 @@ if($arResult["DISPLAY_PROPERTIES"]) {
 		}
 		else {
 
-			//E-mail авторизованного пользователя по умолчанию
+			//E-mail Р°РІС‚РѕСЂРёР·РѕРІР°РЅРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 			if($arParams['POST_EMAIL_CODE'] && $arParams['POST_EMAIL_CODE'] == $arProp['CODE']) {
 				if($USER->IsAuthorized())
 					$arProp['USER_VALUE'] = $USER->GetEmail();
@@ -900,19 +900,19 @@ if($arResult["DISPLAY_PROPERTIES"]) {
 	$response = array();
 	if($isAction) {
 
-		//Удаление файлов
+		//РЈРґР°Р»РµРЅРёРµ С„Р°Р№Р»РѕРІ
 		if($action == 'FILE_DELETE') {
 			$fileName = $request->get('FILE_NAME');
 			$fileCode = $request->get('FILE_CODE');
 			if($fileName && $fileCode) {
 
-				//Удалит файл с диска
+				//РЈРґР°Р»РёС‚ С„Р°Р№Р» СЃ РґРёСЃРєР°
 				$filePath = $arParams['UPLOAD_TMP_DIR'] . '/' . $fileCode;
 				if(is_file($filePath) && file_exists($filePath)) {
 					@unlink($filePath);
 				}
 
-				//Удалит файл из сессии
+				//РЈРґР°Р»РёС‚ С„Р°Р№Р» РёР· СЃРµСЃСЃРёРё
 				if($arSessFile = &$_SESSION['API_FORMDESIGNER'][ $FORM_ID ]['FILES'][ $fileName ]) {
 					if(isset($arSessFile[ $fileCode ]))
 						unset($arSessFile[ $fileCode ]);
@@ -947,7 +947,7 @@ $arResult['ANTIBOT'] = $_REQUEST['ANTIBOT'];
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// Отправка формы
+/// РћС‚РїСЂР°РІРєР° С„РѕСЂРјС‹
 ///////////////////////////////////////////////////////////////////////////////
 
 $isPost = ($request->isPost() && $request->get('API_FD_AJAX') && $FORM_ID == $request->get('UNIQUE_FORM_ID'));
@@ -1039,7 +1039,7 @@ if($isPost) {
 		if($arResult['REQUIRED_PROPERTIES']) {
 			foreach($arResult['REQUIRED_PROPERTIES'] as $reqPropID => $reqPropCode) {
 
-				//Подставим значения поля Файл в $arPostFields, т.к. они хранятся в сессии и USER_VALUE, в $_POST их не будет.
+				//РџРѕРґСЃС‚Р°РІРёРј Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ Р¤Р°Р№Р» РІ $arPostFields, С‚.Рє. РѕРЅРё С…СЂР°РЅСЏС‚СЃСЏ РІ СЃРµСЃСЃРёРё Рё USER_VALUE, РІ $_POST РёС… РЅРµ Р±СѓРґРµС‚.
 				if($prop = $arResult['DISPLAY_PROPERTIES'][ $reqPropID ]) {
 					if($prop['PROPERTY_TYPE'] == 'F') {
 						$arPostFields[ $reqPropCode ] = $prop['USER_VALUE'];
@@ -1047,7 +1047,7 @@ if($isPost) {
 					unset($prop);
 				}
 
-				//Далее стандартный перебор полей формы, с учетом файлов
+				//Р”Р°Р»РµРµ СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ РїРµСЂРµР±РѕСЂ РїРѕР»РµР№ С„РѕСЂРјС‹, СЃ СѓС‡РµС‚РѕРј С„Р°Р№Р»РѕРІ
 				if(empty($arPostFields[ $reqPropCode ])) {
 					$field = $arResult['DISPLAY_PROPERTIES'][ $reqPropID ]['NAME'];
 					$error = str_replace('#FIELD#', $field, $arParams['MESS_REQUIRED_FIELD']);
@@ -1172,7 +1172,7 @@ if($isPost) {
 					else
 						$arResult['DISPLAY_PROPERTIES'][ $bPropID ]['PRINT_VALUE'] = trim($arResult['DISPLAY_PROPERTIES'][ $bPropID ]['DISPLAY_VALUE'][ $postValue ]['VALUE']);
 				}
-				//S:directory - Справочник (кастомный)
+				//S:directory - РЎРїСЂР°РІРѕС‡РЅРёРє (РєР°СЃС‚РѕРјРЅС‹Р№)
 				elseif($arProp["USER_TYPE"] == 'directory' && $bUseHL) {
 					$printValue = '';
 
@@ -1206,13 +1206,13 @@ if($isPost) {
 					$files = '';
 					if($arProp['USER_VALUE']) {
 						foreach($arProp['USER_VALUE'] as $name => $file) {
-							//Массив абсолютных путей к файлам для отправки в письмах вложением
+							//РњР°СЃСЃРёРІ Р°Р±СЃРѕР»СЋС‚РЅС‹С… РїСѓС‚РµР№ Рє С„Р°Р№Р»Р°Рј РґР»СЏ РѕС‚РїСЂР°РІРєРё РІ РїРёСЃСЊРјР°С… РІР»РѕР¶РµРЅРёРµРј
 							$mailFiles[] = $file['tmp_name'];
 
-							//Список прямых ссылок для файлов на сервере, т.r. после отправки письма они удаляются, смысла в них нет
+							//РЎРїРёСЃРѕРє РїСЂСЏРјС‹С… СЃСЃС‹Р»РѕРє РґР»СЏ С„Р°Р№Р»РѕРІ РЅР° СЃРµСЂРІРµСЂРµ, С‚.r. РїРѕСЃР»Рµ РѕС‚РїСЂР°РІРєРё РїРёСЃСЊРјР° РѕРЅРё СѓРґР°Р»СЏСЋС‚СЃСЏ, СЃРјС‹СЃР»Р° РІ РЅРёС… РЅРµС‚
 							//$files       .= $arParams['HTTP_HOST'] . $arParams['UPLOAD_FOLDER'] . '/' . $name . '<br>';
 
-							//Лучше отправим в письме текстом названия файлов соответствующие их md5-кодам
+							//Р›СѓС‡С€Рµ РѕС‚РїСЂР°РІРёРј РІ РїРёСЃСЊРјРµ С‚РµРєСЃС‚РѕРј РЅР°Р·РІР°РЅРёСЏ С„Р°Р№Р»РѕРІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ РёС… md5-РєРѕРґР°Рј
 							$files .= $file['name'] . "\n";
 						}
 					}
@@ -1367,7 +1367,7 @@ if($isPost) {
 					}
 
 					if($arCrmField['TYPE'] == 'enum') {
-						//Ищем XML_ID значения списка для crm поля
+						//РС‰РµРј XML_ID Р·РЅР°С‡РµРЅРёСЏ СЃРїРёСЃРєР° РґР»СЏ crm РїРѕР»СЏ
 						if(is_array($arProp['USER_VALUE'])) {
 							foreach($arProp['USER_VALUE'] as $valueId) {
 								if($arValue = $arProp['DISPLAY_VALUE'][ $valueId ]) {
@@ -1513,7 +1513,7 @@ if($isPost) {
 		$_SESSION['API_FORMDESIGNER'][ $FORM_ID ]['SUCCESS'] = false;
 
 
-		//Удаляем файлы с диска и сессии после успешной отправки формы
+		//РЈРґР°Р»СЏРµРј С„Р°Р№Р»С‹ СЃ РґРёСЃРєР° Рё СЃРµСЃСЃРёРё РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕР№ РѕС‚РїСЂР°РІРєРё С„РѕСЂРјС‹
 		if($arFiles = $_SESSION['API_FORMDESIGNER'][ $FORM_ID ]['FILES']) {
 			foreach($arFiles as $file) {
 				if(is_array($file)) {
